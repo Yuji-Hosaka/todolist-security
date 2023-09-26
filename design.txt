@@ -1,0 +1,19 @@
+REGISTER
+POST/ auth/register
+BODY username, password, confirmPassword, email?
+
+LOGIN
+POST/ auth/login
+BODY username,password
+
+Create Todo
+POST/ Todo
+BODY title, completed?, dueDate?, userId
+
+Update Todo by ID
+
+Delete Todo by ID
+
+GET ALL Todo
+
+GET Todo by ID
