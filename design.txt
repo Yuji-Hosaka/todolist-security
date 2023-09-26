@@ -8,9 +8,15 @@ BODY username,password
 
 Create Todo
 POST/ Todo
-BODY title, completed?, dueDate?, userId
+AUTHORIHEADERZATION BEARER ACCESS_TOKEN
+BODY title, completed?, dueDate?
+RESPONSE
+200 MESSAGE
+400,401 MESSAGE
+500 MESSAGE
 
 Update Todo by ID
+/todo
 
 Delete Todo by ID
 
