@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const prisma = require('../models/prisma')
 exports.register = async (req,res,next) => {
     try {
@@ -32,7 +33,14 @@ exports.login = async (req,res,next) => {
         if(!isMatch){
             return res.status(400).json({message: 'Invalid credential!!'})
         }
-        res.status(200).json({message: "Successful"})
+
+        const payload = {
+            id: targetUser.id
+        }
+        const accessToken = jwt.sign(payload, process.env.JWT_SECRET_KEY || 'default',{
+            expiresIn: process.env.JWT_EXPIRE || '1'
+        })
+        res.status(200).json({accessToken})
     } catch (err) {
         next(err)
     }
